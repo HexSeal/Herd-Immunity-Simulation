@@ -89,8 +89,7 @@ class Simulation(object):
             print('The simulation has ended after',
                   '{time_step_counter} turns.'.format(time_step_counter))
 
-            self.logger.log_time_step(time_step_counter, self.total_dead,
-            self.current_infected, self.total_infected, len(self.newly_infected),
+            self.logger.log_time_step(time_step_counter, self.total_dead, self.current_infected, self.total_infected, len(self.newly_infected),
             dead_this_step)
             should_continue = self._simulation_should_continue()
             

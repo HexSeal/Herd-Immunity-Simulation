@@ -46,17 +46,20 @@ class Logger(object):
             status = str(person._id) + ' died from the infection\n'
             f.write(status)
 
-    def log_time_step(self, time_step_number):
+# @github.com/inv0w helped me with this.
+    def log_time_step(self, time_step_number, total_dead, current_infected,
+        total_infected, newly_infected, dead_this_step):
         time_step_summary = (f"""\
             {'=+'*25}\nTime step {time_step_number} ended\nInfected this time step: {current_infected}\n
             Died this time step: {dead_this_step}\nTotal Population that has been infected = {total_infected}\n
             Total Deaths = {total_dead}\n{'-'*50}\n""")
         #Removes indentation from the string, and reformats it to allign with text file.
-        self.text_formatting(self.file_name, time_step_summary)
+        f = open(self.file_name, "a")
+        f.write(self.file_name, time_step_summary)
         #If it's the last step, function will not write to file
         if current_infected != 0:
             with open(self.file_name, "a") as logs_f:
-                logs_f.write(f"Beginning step {time_step_number + 1}\n\n")
+                logs_f.write(f"Step {time_step_number + 1}\n\n")
 
     def test_logger(self):
         assert self.file_name is "logs.txt"
