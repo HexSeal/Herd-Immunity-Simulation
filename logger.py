@@ -33,6 +33,7 @@ class Logger(object):
 
         else:
             infect = (str(person._id) + ' did not infect ' + str(random_person._id) + " because " + str(random_person._id) + " is already infected\n")
+            f.write(infect)
 
 
     def log_infection_survival(self, person, did_die_from_infection):
@@ -55,7 +56,7 @@ class Logger(object):
             Total Deaths = {total_dead}\n{'-'*50}\n""")
         #Removes indentation from the string, and reformats it to allign with text file.
         f = open(self.file_name, "a")
-        f.write(self.file_name, time_step_summary)
+        f.write(self.file_name + "\t" + time_step_summary)
         #If it's the last step, function will not write to file
         if current_infected != 0:
             with open(self.file_name, "a") as logs_f:
